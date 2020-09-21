@@ -1,40 +1,42 @@
 package controlador;
 
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Cliente {
+public class Cliente implements Runnable{
 
-    public static void main(String[] args) {
-
+    private int PUERTO;
+    private String Mensaje;
+    
+    public Cliente(int puerto, String mensaje){
+        this.PUERTO = puerto;
+        this.Mensaje = mensaje;
+    }
+    
+    @Override
+    public void run() {
+        
+        //Host del servidor
         final String HOST = "127.0.0.1";
-        final int PUERTO = 5000;
-        DataInputStream in;
         DataOutputStream out;
 
         try {
 
             Socket sc = new Socket(HOST, PUERTO);
 
-            in = new DataInputStream(sc.getInputStream());  //carril de llegada
             out = new DataOutputStream(sc.getOutputStream());
                
-            out.writeUTF("Hola Servidor");
-            
-            String mensaje = in.readUTF();
-            
-            System.out.println(mensaje);
+            //Enviar un mensaje al cliente
+            out.writeUTF(Mensaje);
             
             sc.close();
             
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
 }
