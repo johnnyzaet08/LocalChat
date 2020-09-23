@@ -26,7 +26,8 @@ public class InterfazServidor extends javax.swing.JFrame implements Observer {
         txtTextoEnviar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("FRM1");
+        setTitle("Servidor");
+        setName("InterfazServidor"); // NOI18N
 
         txtTexto.setColumns(20);
         txtTexto.setRows(5);
@@ -64,6 +65,8 @@ public class InterfazServidor extends javax.swing.JFrame implements Observer {
                     .addComponent(txtTextoEnviar))
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleDescription("InterfazServidor");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

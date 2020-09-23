@@ -25,19 +25,15 @@ public class Servidor extends Observable implements Runnable {
         
         try {
             servidor = new ServerSocket(PUERTO);
-            System.out.println("Servidor: On");
 
             //Siempre dando vueltas para que alguien se conecte 
             while(true){
                 
                 sc = servidor.accept(); //Cliente conectado
-                System.out.println("Cliente Coenctado");
                 
                 in = new DataInputStream(sc.getInputStream());  //carril de llegada
 
                 String mensaje = in.readUTF(); //Leer el mensaje que envia
-
-                System.out.println(mensaje);
 
                 this.setChanged();
                 this.notifyObservers(mensaje);
@@ -45,7 +41,6 @@ public class Servidor extends Observable implements Runnable {
                 
                 
                 sc.close(); //Cerrar el socket
-                System.out.println("Cliente Desconectado");
               
             }
         } catch (IOException ex) {
