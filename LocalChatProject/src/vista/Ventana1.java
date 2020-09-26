@@ -5,9 +5,9 @@ import controlador.Servidor;
 import java.util.Observable;
 import java.util.Observer;
 
-public class InterfazServidor extends javax.swing.JFrame implements Observer {
+public class Ventana1 extends javax.swing.JFrame implements Observer {
 
-    public InterfazServidor() {
+    public Ventana1() {
         initComponents();
         this.getRootPane().setDefaultButton(this.btnEnviar);
         Servidor s = new Servidor(5000);
@@ -26,8 +26,7 @@ public class InterfazServidor extends javax.swing.JFrame implements Observer {
         txtTextoEnviar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Servidor");
-        setName("InterfazServidor"); // NOI18N
+        setTitle("Ventana Chat 1");
 
         txtTexto.setColumns(20);
         txtTexto.setRows(5);
@@ -66,14 +65,12 @@ public class InterfazServidor extends javax.swing.JFrame implements Observer {
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleDescription("InterfazServidor");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
 
-        String mensaje = "Servidor: " + this.txtTextoEnviar.getText() + "\n";
+        String mensaje = ": " + this.txtTextoEnviar.getText() + "\n";
 
         this.txtTexto.append(mensaje);
 
@@ -83,39 +80,6 @@ public class InterfazServidor extends javax.swing.JFrame implements Observer {
 
 
     }//GEN-LAST:event_btnEnviarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazServidor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazServidor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazServidor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazServidor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfazServidor().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
