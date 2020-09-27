@@ -5,10 +5,20 @@ import clases.Servidor;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Esta clase contiene la ventana con swing
+ * @author Johnny Aguero
+ * @version 1.0
+ */
+
 public class Ventana extends javax.swing.JFrame implements Observer {
     public int PORT = 0;
     public String PUERTO = null;
-    
+
+     /**
+     * Metodo constructor parametrizado
+     * @param puerto Numero del puerto donde se crea el servidor para escuchar los mensajes
+     */
     public Ventana(int puerto) {
         initComponents();
         this.getRootPane().setDefaultButton(this.btnEnviar);
@@ -77,11 +87,14 @@ public class Ventana extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     /**
+     * Metodo constructor parametrizado que se activa con el boton de enviar
+     */
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
 
         String puerto = this.txtTextoEnviar1.getText();
         int enviaje = Integer.parseInt(puerto);
-        
+
         String mensaje = PUERTO + " to " + puerto + ": " + this.txtTextoEnviar.getText() + "\n";
 
         this.txtTexto.append(mensaje);
