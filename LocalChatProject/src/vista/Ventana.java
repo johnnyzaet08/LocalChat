@@ -1,16 +1,21 @@
 package vista;
 
-import controlador.Cliente;
-import controlador.Servidor;
+import clases.Cliente;
+import clases.Servidor;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Ventana1 extends javax.swing.JFrame implements Observer {
-
-    public Ventana1() {
+public class Ventana extends javax.swing.JFrame implements Observer {
+    public int PORT = 0;
+    public String PUERTO = null;
+    
+    public Ventana(int puerto) {
         initComponents();
         this.getRootPane().setDefaultButton(this.btnEnviar);
-        Servidor s = new Servidor(5000);
+        Servidor s = new Servidor(puerto);
+        this.PORT = puerto;
+        this.PUERTO = Integer.toString(PORT);
+        this.txtTexto.append("Su puerto es:" + PUERTO + "\n");
         s.addObserver(this);
         Thread t = new Thread(s);
         t.start();
@@ -24,6 +29,7 @@ public class Ventana1 extends javax.swing.JFrame implements Observer {
         txtTexto = new javax.swing.JTextArea();
         btnEnviar = new javax.swing.JButton();
         txtTextoEnviar = new javax.swing.JTextField();
+        txtTextoEnviar1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana Chat 1");
@@ -47,20 +53,23 @@ public class Ventana1 extends javax.swing.JFrame implements Observer {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtTextoEnviar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                        .addComponent(txtTextoEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTextoEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEnviar))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTextoEnviar1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(txtTextoEnviar))
                 .addContainerGap())
         );
@@ -70,11 +79,12 @@ public class Ventana1 extends javax.swing.JFrame implements Observer {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
 
-        String mensaje = ": " + this.txtTextoEnviar.getText() + "\n";
+        String mensaje = PUERTO + ": " + this.txtTextoEnviar.getText() + "\n";
 
         this.txtTexto.append(mensaje);
-
-        Cliente c = new Cliente(6000, mensaje);
+        String puerto = this.txtTextoEnviar1.getText();
+        int enviaje = Integer.parseInt(puerto);
+        Cliente c = new Cliente(enviaje, mensaje);
         Thread t = new Thread(c);
         t.start();
 
@@ -86,6 +96,7 @@ public class Ventana1 extends javax.swing.JFrame implements Observer {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtTexto;
     private javax.swing.JTextField txtTextoEnviar;
+    private javax.swing.JTextField txtTextoEnviar1;
     // End of variables declaration//GEN-END:variables
 
     @Override

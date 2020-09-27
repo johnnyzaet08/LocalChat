@@ -1,4 +1,4 @@
-package controlador;
+package clases;
 
 import java.io.DataInputStream;
 import java.io.IOException;

@@ -1,18 +1,25 @@
 package controlador;
 
-import vista.Ventana1;
-import vista.Ventana2;
+import static java.lang.Integer.parseInt;
+import java.util.Scanner;
+import vista.Ventana;
 import javafx.application.Application;
 
 
 public abstract class Main extends Application {
     
     public static void main(String[] args) {
-        System.out.println("Bandera1");
-        new Ventana2().setVisible(true);
-        System.out.println("Bandera2");
-        new Ventana1().setVisible(true);
-        System.out.println("Bandera3");
+        int min = 5000;
+        int max = 10000;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Cuantos chats necesita?");
+        int chats = sc.nextInt();
+        int i = 0;
+        while (i < chats){
+            int port = (int)(Math.random()*(max - min + 1) + min);
+            new Ventana(port).setVisible(true);
+;            i += 1;
+        }
 }
     
 }
