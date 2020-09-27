@@ -15,7 +15,7 @@ public class Ventana extends javax.swing.JFrame implements Observer {
         Servidor s = new Servidor(puerto);
         this.PORT = puerto;
         this.PUERTO = Integer.toString(PORT);
-        this.txtTexto.append("Su puerto es:" + PUERTO + "\n");
+        this.txtTexto.append("Su puerto es: " + PUERTO + "\n");
         s.addObserver(this);
         Thread t = new Thread(s);
         t.start();
@@ -79,11 +79,12 @@ public class Ventana extends javax.swing.JFrame implements Observer {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
 
-        String mensaje = PUERTO + ": " + this.txtTextoEnviar.getText() + "\n";
-
-        this.txtTexto.append(mensaje);
         String puerto = this.txtTextoEnviar1.getText();
         int enviaje = Integer.parseInt(puerto);
+        
+        String mensaje = PUERTO + " to " + puerto + ": " + this.txtTextoEnviar.getText() + "\n";
+
+        this.txtTexto.append(mensaje);
         Cliente c = new Cliente(enviaje, mensaje);
         Thread t = new Thread(c);
         t.start();
