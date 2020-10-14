@@ -1,6 +1,6 @@
 package controlador;
 
-import static java.lang.Integer.parseInt;
+import java.io.IOException;
 import java.util.Scanner;
 import vista.Ventana;
 import javafx.application.Application;
@@ -19,14 +19,19 @@ public abstract class Main extends Application {
     public static void main(String[] args) {
         int min = 5000;
         int max = 10000;
-        Scanner sc = new Scanner(System.in); //Para el ingreso de un dato
-        System.out.println("Cuantos chats necesita?");
-        int chats = sc.nextInt();
-        int i = 0;
-        while (i < chats) {
-            int port = (int) (Math.random() * (max - min + 1) + min);
-            new Ventana(port).setVisible(true); //Crea las ventanas deseadas por el usuario
-            i += 1;
+        try {
+            Scanner sc = new Scanner(System.in); //Para el ingreso de un dato
+            System.out.println("Cuantos chats necesita?");
+            int chats = sc.nextInt();
+            int i = 0;
+            while (i < chats) {
+                int port = (int) (Math.random() * (max - min + 1) + min);
+                new Ventana(port).setVisible(true); //Crea las ventanas deseadas por el usuario
+                i += 1;
+        }
+        }
+        catch (Exception as){
+            System.out.println(as);
         }
     }
 
