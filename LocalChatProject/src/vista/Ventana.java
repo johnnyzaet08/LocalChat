@@ -91,16 +91,20 @@ public class Ventana extends javax.swing.JFrame implements Observer {
      * Metodo constructor parametrizado que se activa con el boton de enviar
      */
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        try{
+            String puerto = this.txtTextoEnviar1.getText();
+            int enviaje = Integer.parseInt(puerto);
 
-        String puerto = this.txtTextoEnviar1.getText();
-        int enviaje = Integer.parseInt(puerto);
+            String mensaje = PUERTO + " to " + puerto + ": " + this.txtTextoEnviar.getText() + "\n";
 
-        String mensaje = PUERTO + " to " + puerto + ": " + this.txtTextoEnviar.getText() + "\n";
-
-        this.txtTexto.append(mensaje);
-        Cliente c = new Cliente(enviaje, mensaje);
-        Thread t = new Thread(c);
-        t.start();
+            this.txtTexto.append(mensaje);
+            Cliente c = new Cliente(enviaje, mensaje);
+            Thread t = new Thread(c);
+            t.start();
+        }
+        catch(NumberFormatException ex){
+            System.out.println(ex);
+        }
 
 
     }//GEN-LAST:event_btnEnviarActionPerformed
