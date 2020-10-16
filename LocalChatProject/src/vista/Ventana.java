@@ -2,6 +2,10 @@ package vista;
 
 import clases.Cliente;
 import clases.Servidor;
+import controlador.Main;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,6 +16,7 @@ import java.util.Observer;
  */
 
 public class Ventana extends javax.swing.JFrame implements Observer {
+    private static Logger log = LoggerFactory.getLogger(Ventana.class);
     public int PORT = 0;
     public String PUERTO = null;
 
@@ -91,6 +96,7 @@ public class Ventana extends javax.swing.JFrame implements Observer {
      * Metodo constructor parametrizado que se activa con el boton de enviar
      */
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+
         try{
             String puerto = this.txtTextoEnviar1.getText();
             int enviaje = Integer.parseInt(puerto);
@@ -103,7 +109,7 @@ public class Ventana extends javax.swing.JFrame implements Observer {
             t.start();
         }
         catch(NumberFormatException ex){
-            System.out.println(ex);
+            log.error("El dato ingresado no es para un puerto",ex);
         }
 
 

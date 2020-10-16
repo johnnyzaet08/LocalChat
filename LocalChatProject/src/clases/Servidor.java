@@ -1,5 +1,8 @@
 package clases;
 
+import controlador.Main;
+import org.slf4j.LoggerFactory;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -16,6 +19,7 @@ import java.util.Observable;
  */
 
 public class Servidor extends Observable implements Runnable {
+    private static org.slf4j.Logger log = LoggerFactory.getLogger(Main.class);
 
 /**
      * Metodo constructor parametrizado
@@ -53,6 +57,7 @@ public class Servidor extends Observable implements Runnable {
 
             }
         } catch (IOException ex) {
+            log.error("El servidor no pudo quedarse escuchando",ex);
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

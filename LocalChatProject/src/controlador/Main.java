@@ -2,6 +2,10 @@ package controlador;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import vista.Ventana;
 import javafx.application.Application;
 
@@ -12,6 +16,7 @@ import javafx.application.Application;
  */
 
 public abstract class Main extends Application {
+    private static Logger log = LoggerFactory.getLogger(Main.class);
 /**
      * Metodo constructor parametrizado
      * @param args 
@@ -20,6 +25,7 @@ public abstract class Main extends Application {
         int min = 5000;
         int max = 10000;
         try {
+
             Scanner sc = new Scanner(System.in); //Para el ingreso de un dato
             System.out.println("Cuantos chats necesita?");
             int chats = sc.nextInt();
@@ -28,10 +34,12 @@ public abstract class Main extends Application {
                 int port = (int) (Math.random() * (max - min + 1) + min);
                 new Ventana(port).setVisible(true); //Crea las ventanas deseadas por el usuario
                 i += 1;
+
         }
+
         }
         catch (Exception as){
-            System.out.println(as);
+            log.error("Escribio dato que no es un numero natural",as);
         }
     }
 

@@ -1,5 +1,8 @@
 package clases;
 
+import controlador.Main;
+import org.slf4j.LoggerFactory;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -13,6 +16,7 @@ import java.util.logging.Logger;
  */
 
 public class Cliente implements Runnable {
+    private static org.slf4j.Logger log = LoggerFactory.getLogger(Cliente.class);
 
     /**
      * Metodo constructor parametrizado
@@ -46,6 +50,7 @@ public class Cliente implements Runnable {
             sc.close();
 
         } catch (IOException ex) {
+            log.error("No se logro enviar el mensaje",ex);
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
