@@ -37,6 +37,7 @@ public abstract class Main extends Application {
             }
         }
         catch(Error dc) {
+            log.error("El usuario solicito demasidas ventanas",dc);
             //Por aquello que el programa se caiga por memoria ya que metio demasiados chats
         }
         catch (Exception as){
