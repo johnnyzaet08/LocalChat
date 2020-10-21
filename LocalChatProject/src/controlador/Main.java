@@ -34,9 +34,10 @@ public abstract class Main extends Application {
                 int port = (int) (Math.random() * (max - min + 1) + min);
                 new Ventana(port).setVisible(true); //Crea las ventanas deseadas por el usuario
                 i += 1;
-
+            }
         }
-
+        catch(Error dc) {
+            //Por aquello que el programa se caiga por memoria ya que metio demasiados chats
         }
         catch (Exception as){
             log.error("Escribio dato que no es un numero natural",as);
